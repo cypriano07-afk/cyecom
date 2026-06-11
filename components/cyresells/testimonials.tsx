@@ -4,13 +4,13 @@ import { AnimatedSection } from "./animated-section"
 
 const testimonials = [
   {
-    name: "Sai",
-    amount: "$5,232",
+    name: "Kian",
+    amount: "$11,107",
     videoId: "-i708XatP8U",
   },
   {
-    name: "Kian",
-    amount: "$11,107",
+    name: "Sai",
+    amount: "$5,232",
     videoId: "xuYP5DpTRBM",
   },
 ]
