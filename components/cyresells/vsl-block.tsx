@@ -66,7 +66,7 @@ export function VslStep2() {
     <AnimatedSection delay={0.1} className="w-full max-w-[95vw] md:max-w-[65vw] mx-auto">
       <div id="cyresells-step2" className="flex flex-col gap-5">
         <p className="text-[#C9A84C] font-bold text-xl md:text-2xl lg:text-3xl uppercase tracking-wider text-center">
-          Step 2 of 2: Apply To Learn AI Reselling ⬇️
+          Step 2 of 2: Apply To Learn AI Digital Ecom ⬇️
         </p>
         <div
           className="rounded-2xl overflow-hidden"

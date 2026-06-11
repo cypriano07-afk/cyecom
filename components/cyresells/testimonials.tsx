@@ -31,7 +31,7 @@ function TestimonialVideoCard({
         <span className="text-[#C9A84C]">{name}</span>{" "}
         Made{" "}
         <span className="text-[#C9A84C]">{amount}</span>{" "}
-        Last Month with AI Reselling:
+        Last Month with AI Digital Ecom:
       </p>
 
       {/* Laptop frame */}
