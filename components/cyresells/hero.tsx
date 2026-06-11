@@ -135,14 +135,14 @@ export function CyresellsHero() {
         {/* Headline */}
         <h1 className="text-[1.85rem] leading-[1.2] md:text-[2.6rem] md:leading-[1.15] lg:text-[3.4rem] lg:leading-[1.1] font-bold text-white">
           Learn The{" "}
-          <span className="text-[#C9A84C]">AI Reselling Method</span>{" "}
-          Resellers Are Using To Hit Consistent{" "}
+          <span className="text-[#C9A84C]">AI Digital Ecom Method</span>{" "}
+          Entrepreneurs Are Using To Hit Consistent{" "}
           <span className="text-[#C9A84C]">£10k–£25k+/Months</span>
         </h1>
 
         {/* Subheadline */}
         <p className="text-sm md:text-base lg:text-lg text-[#C9A84C] italic font-medium mt-1">
-          And How You&apos;re Early to The AI Reselling Goldrush...
+          And How You&apos;re Early to The AI Digital Ecom
         </p>
       </div>
     </section>
