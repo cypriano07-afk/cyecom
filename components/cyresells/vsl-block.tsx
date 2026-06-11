@@ -3,34 +3,24 @@
 import Script from "next/script"
 import { AnimatedSection } from "./animated-section"
 
-const VSL_VIDEO_ID = "z7HnekuD3KY"
+const WISTIA_ID = "zvdenmbtkm"
 const CALENDLY_URL = "https://calendly.com/cyresellss1/1-1-discovery-call-with-cy-resells"
 
-function VideoFrame({ videoId }: { videoId: string }) {
-  if (videoId) {
-    return (
+function VideoFrame() {
+  return (
+    <>
+      <Script src="https://fast.wistia.com/player.js" strategy="lazyOnload" />
+      <Script src={`https://fast.wistia.com/embed/${WISTIA_ID}.js`} strategy="lazyOnload" />
+      <style>{`wistia-player[media-id='${WISTIA_ID}']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/${WISTIA_ID}/swatch');display:block;filter:blur(5px);}`}</style>
       <div className="relative w-full aspect-video">
-        <iframe
-          src={`https://www.youtube.com/embed/${videoId}`}
-          title="VSL"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="absolute inset-0 w-full h-full"
+        {/* @ts-ignore */}
+        <wistia-player
+          media-id={WISTIA_ID}
+          aspect="1.7777777777777777"
+          style={{ width: "100%", height: "100%" }}
         />
       </div>
-    )
-  }
-
-  return (
-    <div className="relative w-full aspect-video bg-[#111009] flex items-center justify-center rounded-xl overflow-hidden border border-white/10">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#C9A84C]/5 to-transparent" />
-      <div className="flex flex-col items-center gap-3 z-10">
-        <div className="w-16 h-16 rounded-full bg-[#C9A84C] flex items-center justify-center shadow-lg shadow-[#C9A84C]/30">
-          <Play className="w-7 h-7 text-black fill-black ml-1" />
-        </div>
-        <p className="text-white/40 text-sm">Video coming soon</p>
-      </div>
-    </div>
+    </>
   )
 }
 
@@ -64,7 +54,7 @@ export function VslStep1() {
             boxShadow: "0 0 25px rgba(201,168,76,0.18), 0 0 60px rgba(201,168,76,0.07), 0 20px 60px rgba(0,0,0,0.6)",
           }}
         >
-          <VideoFrame videoId={VSL_VIDEO_ID} />
+          <VideoFrame />
         </div>
       </div>
     </AnimatedSection>
