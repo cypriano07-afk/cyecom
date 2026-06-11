@@ -44,7 +44,7 @@ function CalendlyFrame() {
       <div
         className="calendly-inline-widget w-full"
         data-url={CALENDLY_URL}
-        style={{ minWidth: "320px", height: "700px" }}
+        style={{ minWidth: "320px", height: "clamp(900px, 120vw, 1100px)" }}
       />
     </>
   )
@@ -52,7 +52,7 @@ function CalendlyFrame() {
 
 export function VslStep1() {
   return (
-    <AnimatedSection delay={0.1} className="w-full max-w-[65vw] mx-auto">
+    <AnimatedSection delay={0.1} className="w-full max-w-[95vw] md:max-w-[65vw] mx-auto">
       <div className="flex flex-col gap-5">
         <p className="text-[#C9A84C] font-bold text-xl md:text-2xl lg:text-3xl uppercase tracking-wider text-center">
           Step 1 of 2: Watch This Video ⬇️
@@ -73,7 +73,7 @@ export function VslStep1() {
 
 export function VslStep2() {
   return (
-    <AnimatedSection delay={0.1} className="w-full max-w-[65vw] mx-auto">
+    <AnimatedSection delay={0.1} className="w-full max-w-[95vw] md:max-w-[65vw] mx-auto">
       <div id="cyresells-step2" className="flex flex-col gap-5">
         <p className="text-[#C9A84C] font-bold text-xl md:text-2xl lg:text-3xl uppercase tracking-wider text-center">
           Step 2 of 2: Apply To Learn AI Reselling ⬇️
