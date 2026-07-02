@@ -16,7 +16,7 @@ export function CyresellsCta() {
           <div className="w-12 h-0.5 bg-[#C9A84C] rounded-full" />
 
           <h2 className="text-white text-2xl md:text-3xl font-bold">
-            Ready to start reselling AI?
+            Ready to start AI Digital Ecom?#
           </h2>
           <p className="text-white/60 text-base max-w-md">
             Spots are limited. Apply now and lock in your early access before
