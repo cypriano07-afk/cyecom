@@ -1,10 +1,11 @@
 "use client"
 
 import Script from "next/script"
+import { useEffect } from "react"
 import { AnimatedSection } from "./animated-section"
 
 const WISTIA_ID = "zvdenmbtkm"
-const CALENDLY_URL = "https://calendly.com/cyresellss1/1-1-discovery-call-with-cy-resells"
+const TALLY_FORM_ID = "eqP5JE"
 
 function VideoFrame() {
   return (
@@ -24,17 +25,54 @@ function VideoFrame() {
   )
 }
 
-function CalendlyFrame() {
+// Embeds the Tally lead qualification form (official Tally embed method).
+// Qualification logic (budget-based) and redirects (Calendly for qualified
+// leads, /not-qualified for unqualified leads) are configured inside the
+// Tally form itself via conditional logic + "Redirect on completion".
+function TallyFrame() {
+  useEffect(() => {
+    const loadEmbeds = () => {
+      // @ts-ignore
+      if (window.Tally) {
+        // @ts-ignore
+        window.Tally.loadEmbeds()
+      }
+    }
+
+    // @ts-ignore
+    if (window.Tally) {
+      loadEmbeds()
+      return
+    }
+
+    const existingScript = document.querySelector('script[src="https://tally.so/widgets/embed.js"]')
+    if (existingScript) {
+      existingScript.addEventListener("load", loadEmbeds)
+      return () => existingScript.removeEventListener("load", loadEmbeds)
+    }
+  }, [])
+
   return (
     <>
       <Script
-        src="https://assets.calendly.com/assets/external/widget.js"
-        strategy="lazyOnload"
+        src="https://tally.so/widgets/embed.js"
+        strategy="afterInteractive"
+        onLoad={() => {
+          // @ts-ignore
+          if (window.Tally) {
+            // @ts-ignore
+            window.Tally.loadEmbeds()
+          }
+        }}
       />
-      <div
-        className="calendly-inline-widget w-full"
-        data-url={CALENDLY_URL}
-        style={{ minWidth: "320px", height: "clamp(900px, 120vw, 1100px)" }}
+      <iframe
+        data-tally-src={`https://tally.so/embed/${TALLY_FORM_ID}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`}
+        loading="lazy"
+        width="100%"
+        height="1050"
+        title="Ai Digital Ecom Application"
+        className="w-full"
+        style={{ border: "none" }}
       />
     </>
   )
@@ -75,7 +113,7 @@ export function VslStep2() {
             boxShadow: "0 0 25px rgba(201,168,76,0.18), 0 0 60px rgba(201,168,76,0.07), 0 20px 60px rgba(0,0,0,0.6)",
           }}
         >
-          <CalendlyFrame />
+          <TallyFrame />
         </div>
       </div>
     </AnimatedSection>
