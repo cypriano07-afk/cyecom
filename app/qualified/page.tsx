@@ -36,15 +36,17 @@ export default function QualifiedPage() {
           className="rounded-lg bg-white"
         ></iframe>
       </div>
-      <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center gap-6 mt-10">
-        <p className="text-white/90 text-base md:text-lg leading-relaxed">
-          Watch this video before our call to get a better understanding on AI Digital Ecommerce
+      <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center gap-6 mt-10">
+        <p className="font-bold text-2xl md:text-3xl lg:text-4xl leading-snug">
+          <span className="text-[#C9A84C]">Watch this video</span>{" "}
+          <span className="text-white">before our call to get a better understanding on</span>{" "}
+          <span className="text-[#C9A84C]">AI Digital Ecommerce</span>
         </p>
       </div>
       <Script src="https://fast.wistia.com/player.js" strategy="lazyOnload" />
       <Script src={`https://fast.wistia.com/embed/${WISTIA_ID}.js`} strategy="lazyOnload" />
       <style>{`wistia-player[media-id='${WISTIA_ID}']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/${WISTIA_ID}/swatch');display:block;filter:blur(5px);}`}</style>
-      <div className="relative z-10 w-full max-w-3xl mx-auto mt-4 aspect-video">
+      <div className="relative z-10 w-full max-w-3xl mx-auto mt-6 aspect-video">
         {/* @ts-ignore */}
         <wistia-player
           media-id={WISTIA_ID}
