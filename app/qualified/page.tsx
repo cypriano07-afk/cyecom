@@ -6,7 +6,7 @@ export const metadata = {
 
 export default function QualifiedPage() {
   return (
-    <main className="bg-[#0E0D09] min-h-screen flex flex-col items-center justify-center px-4 md:px-6 py-20 text-center relative overflow-hidden">
+    <main className="bg-[#0E0D09] min-h-screen flex flex-col items-center px-4 md:px-6 py-20 text-center relative overflow-hidden">
       <FloatingGrid />
       <div
         className="absolute right-[-200px] top-[-200px] w-[900px] h-[900px] rounded-full pointer-events-none z-0"
@@ -22,14 +22,16 @@ export default function QualifiedPage() {
         <p className="text-white/90 text-base md:text-lg leading-relaxed">
           Thank you for applying — you've qualified! Book a call with us below to take the next step.
         </p>
-        <a
-          href="https://calendly.com/cyresellss1/1-on-1-discovery-call-ai-digital-ecom"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-2 inline-block bg-[#C9A84C] text-[#0E0D09] font-bold px-8 py-4 rounded-lg uppercase tracking-wider hover:opacity-90 transition-opacity"
-        >
-          Book Your Call
-        </a>
+      </div>
+      <div className="relative z-10 w-full max-w-4xl mx-auto mt-8" style={{ height: "750px" }}>
+        <iframe
+          src="https://calendly.com/cyresellss1/1-on-1-discovery-call-ai-digital-ecom?month=2026-07"
+          width="100%"
+          height="100%"
+          frameBorder={0}
+          title="Book a call"
+          className="rounded-lg bg-white"
+        ></iframe>
       </div>
     </main>
   )
