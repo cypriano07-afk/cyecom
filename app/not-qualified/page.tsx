@@ -1,4 +1,5 @@
 import { FloatingGrid } from "@/components/cyresells/floating-grid"
+import Script from "next/script"
 
 export const metadata = {
   title: "Application Received | AI Digital Ecom",
@@ -15,26 +16,42 @@ export default function NotQualifiedPage() {
           filter: "blur(80px)",
         }}
       />
-      <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center gap-6">
+      <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center gap-6">
         <p className="text-[#C9A84C] font-bold text-xl md:text-2xl lg:text-3xl uppercase tracking-wider">
           Application Received
         </p>
         <p className="text-white/90 text-base md:text-lg leading-relaxed">
           Thank you for applying. Based on your current budget, we're unable to offer a strategy call at this time. We'll review your application and contact you if we're a good fit.
         </p>
-        <a
-          href="https://youtu.be/A41ic1syJT8?si=s8Vjnm8cV0TA-2EI"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6 text-3xl md:text-5xl font-extrabold text-[#FFD966] leading-snug hover:opacity-90 transition-opacity"
+        <p
+          className="mt-6 text-3xl md:text-5xl font-extrabold text-[#FFD966] leading-snug"
           style={{
             textShadow:
               "0 0 10px rgba(255,217,102,0.9), 0 0 25px rgba(255,217,102,0.7), 0 0 45px rgba(201,168,76,0.6), 0 0 80px rgba(201,168,76,0.45)",
           }}
         >
           Watch this full Free Training to prepare for the future chance to qualify
-        </a>
+        </p>
+        <div className="w-full max-w-2xl mt-4">
+          <div className="wistia_responsive_padding" style={{ padding: "56.25% 0 0 0", position: "relative" }}>
+            <div className="wistia_responsive_wrapper" style={{ height: "100%", left: 0, position: "absolute", top: 0, width: "100%" }}>
+              <div className="wistia_embed wistia_async_qnr1yuymkc seo=true videoFoam=true" style={{ height: "100%", position: "relative", width: "100%" }}>
+                <div className="wistia_swatch" style={{ height: "100%", left: 0, opacity: 0, overflow: "hidden", position: "absolute", top: 0, transition: "opacity 200ms", width: "100%" }}>
+                  <img
+                    src="https://fast.wistia.com/embed/medias/qnr1yuymkc/swatch"
+                    style={{ filter: "blur(5px)", height: "100%", objectFit: "contain", width: "100%" }}
+                    alt=""
+                    aria-hidden="true"
+                    onLoad={(e) => { (e.target as HTMLImageElement).parentElement!.style.opacity = "1" }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <Script src="https://fast.wistia.com/embed/medias/qnr1yuymkc.jsonp" strategy="lazyOnload" />
+      <Script src="https://fast.wistia.com/assets/external/E-v1.js" strategy="lazyOnload" />
     </main>
   )
 }
