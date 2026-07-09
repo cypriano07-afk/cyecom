@@ -22,6 +22,18 @@ export default function NotQualifiedPage() {
         <p className="text-white/90 text-base md:text-lg leading-relaxed">
           Thank you for applying. Based on your current budget, we're unable to offer a strategy call at this time. We'll review your application and contact you if we're a good fit.
         </p>
+        <a
+          href="https://youtu.be/A41ic1syJT8?si=s8Vjnm8cV0TA-2EI"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 text-3xl md:text-5xl font-extrabold text-[#FFD966] leading-snug hover:opacity-90 transition-opacity"
+          style={{
+            textShadow:
+              "0 0 10px rgba(255,217,102,0.9), 0 0 25px rgba(255,217,102,0.7), 0 0 45px rgba(201,168,76,0.6), 0 0 80px rgba(201,168,76,0.45)",
+          }}
+        >
+          Watch this full Free Training to prepare for the future chance to qualify
+        </a>
       </div>
     </main>
   )
