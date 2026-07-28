@@ -39,6 +39,17 @@ export default function NotQualifiedPage() {
             </div>
           </div>
         </div>
+        <div className="mt-8 flex flex-col items-center gap-3">
+          <p className="text-white/90 text-base md:text-lg">
+            Ready now? You can skip the wait and get started today:
+          </p>
+          <a
+            href="https://buy.stripe.com/8x2fZbfhfbhHalE41kcAo07"
+            className="inline-block bg-[#C9A84C] hover:bg-[#FFD966] text-[#0E0D09] font-bold text-lg md:text-xl px-8 py-4 rounded-xl transition-colors"
+          >
+            Secure Your Spot Now →
+          </a>
+        </div>
       </div>
       <Script src="https://fast.wistia.com/embed/medias/qnr1yuymkc.jsonp" strategy="lazyOnload" />
       <Script src="https://fast.wistia.com/assets/external/E-v1.js" strategy="lazyOnload" />
