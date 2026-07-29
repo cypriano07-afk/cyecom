@@ -50,3 +50,20 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes results-scroll {
+    from {
+          transform: translateX(0);
+    }
+    to {
+          transform: translateX(-50%);
+    }
+}
+
+.animate-results-scroll {
+    animation: results-scroll 36s linear infinite;
+}
+
+.animate-results-scroll:hover {
+    animation-play-state: paused;
+}
