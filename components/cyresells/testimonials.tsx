@@ -1,6 +1,7 @@
 "use client"
 
 import { AnimatedSection } from "./animated-section"
+import { ResultsCarousel } from "./results-carousel"
 
 const testimonials = [
   {
@@ -80,6 +81,8 @@ export function CyresellsTestimonials() {
           </AnimatedSection>
         ))}
       </div>
+
+              <ResultsCarousel />
     </section>
   )
 }
