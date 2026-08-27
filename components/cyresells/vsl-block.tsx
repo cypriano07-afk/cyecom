@@ -82,14 +82,14 @@ export function VslStep1() {
   return (
     <AnimatedSection delay={0.1} className="w-full max-w-[95vw] md:max-w-[65vw] mx-auto">
       <div className="flex flex-col gap-5">
-        <p className="text-[#C9A84C] font-bold text-xl md:text-2xl lg:text-3xl uppercase tracking-wider text-center">
+        <p className="text-[#8FCB9B] font-bold text-xl md:text-2xl lg:text-3xl uppercase tracking-wider text-center">
           Step 1 of 2: Watch This Video ⬇️
         </p>
         <div
           className="rounded-2xl overflow-hidden"
           style={{
-            border: "1px solid rgba(201,168,76,0.35)",
-            boxShadow: "0 0 25px rgba(201,168,76,0.18), 0 0 60px rgba(201,168,76,0.07), 0 20px 60px rgba(0,0,0,0.6)",
+            border: "1px solid rgba(143,203,155,0.35)",
+            boxShadow: "0 0 25px rgba(143,203,155,0.18), 0 0 60px rgba(143,203,155,0.07), 0 20px 60px rgba(0,0,0,0.6)",
           }}
         >
           <VideoFrame />
@@ -103,14 +103,14 @@ export function VslStep2() {
   return (
     <AnimatedSection delay={0.1} className="w-full max-w-[95vw] md:max-w-[65vw] mx-auto">
       <div id="cyresells-step2" className="flex flex-col gap-5">
-        <p className="text-[#C9A84C] font-bold text-xl md:text-2xl lg:text-3xl uppercase tracking-wider text-center">
+        <p className="text-[#8FCB9B] font-bold text-xl md:text-2xl lg:text-3xl uppercase tracking-wider text-center">
           Step 2 of 2: Apply To Learn AI Digital Ecom ⬇️
         </p>
         <div
           className="rounded-2xl overflow-hidden"
           style={{
-            border: "1px solid rgba(201,168,76,0.35)",
-            boxShadow: "0 0 25px rgba(201,168,76,0.18), 0 0 60px rgba(201,168,76,0.07), 0 20px 60px rgba(0,0,0,0.6)",
+            border: "1px solid rgba(143,203,155,0.35)",
+            boxShadow: "0 0 25px rgba(143,203,155,0.18), 0 0 60px rgba(143,203,155,0.07), 0 20px 60px rgba(0,0,0,0.6)",
           }}
         >
           <TallyFrame />
