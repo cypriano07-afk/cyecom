@@ -9,10 +9,12 @@ function seededRandom(seed) {
 
 const FIELD_STAR_COUNT = 35
 const ARM_COUNT = 3
-const ARM_STAR_COUNT = 55
-const CORE_STAR_COUNT = 20
-const SPIRAL_TURNS = 2.4
+const ARM_STAR_COUNT = 60
+const CORE_STAR_COUNT = 22
+const DUST_PER_ARM = 7
+const SPIRAL_TURNS = 2.2
 const MAX_RADIUS = 46
+const DISC_SIZE = 640
 
 const FIELD_STARS = Array.from({ length: FIELD_STAR_COUNT }, (_, i) => {
   const n = i + 1
@@ -25,7 +27,7 @@ const FIELD_STARS = Array.from({ length: FIELD_STAR_COUNT }, (_, i) => {
   return { x, y, size, isGreen, delay, duration }
 })
 
-const ARM_STARS = Array.from({ length: ARM_STAR_COUNT }, (_, i) => {
+function armPoint(i, jitterAmount) {
   const n = i + 1
   const arm = i % ARM_COUNT
   const t = seededRandom(n * 3.71)
@@ -33,12 +35,18 @@ const ARM_STARS = Array.from({ length: ARM_STAR_COUNT }, (_, i) => {
   const angle =
     arm * ((2 * Math.PI) / ARM_COUNT) +
     t * SPIRAL_TURNS * 2 * Math.PI +
-    (seededRandom(n * 5.19) - 0.5) * 0.5
-  const jitter = (seededRandom(n * 9.53) - 0.5) * (3 + t * 9)
+    (seededRandom(n * 5.19) - 0.5) * 0.4
+  const jitter = jitterAmount ? (seededRandom(n * 9.53) - 0.5) * (3 + t * 9) : 0
   const r = radius + jitter
   const x = 50 + r * Math.cos(angle)
   const y = 50 + r * Math.sin(angle)
-  const size = 1 + seededRandom(n * 2.17) * 2.2
+  return { x, y, t }
+}
+
+const ARM_STARS = Array.from({ length: ARM_STAR_COUNT }, (_, i) => {
+  const n = i + 1
+  const { x, y, t } = armPoint(i, true)
+  const size = 1.2 + seededRandom(n * 2.17) * 2.4
   const isGreen = seededRandom(n * 6.61) > 0.6
   const delay = seededRandom(n * 8.43) * 4
   const duration = 2.5 + seededRandom(n * 4.29) * 3
@@ -51,14 +59,26 @@ const CORE_STARS = Array.from({ length: CORE_STAR_COUNT }, (_, i) => {
   const angle = seededRandom(n * 5.19) * 2 * Math.PI
   const x = 50 + radius * Math.cos(angle)
   const y = 50 + radius * Math.sin(angle)
-  const size = 1.5 + seededRandom(n * 2.17) * 2.5
-  const isGreen = seededRandom(n * 6.61) > 0.55
+  const size = 1.8 + seededRandom(n * 2.17) * 2.6
+  const isGreen = seededRandom(n * 6.61) > 0.5
   const delay = seededRandom(n * 8.43) * 3
   const duration = 2 + seededRandom(n * 4.29) * 2.5
   return { x, y, size, isGreen, delay, duration }
 })
 
 const GALAXY_STARS = [...ARM_STARS, ...CORE_STARS]
+
+const DUST_BANDS = Array.from({ length: ARM_COUNT * DUST_PER_ARM }, (_, i) => {
+  const arm = i % ARM_COUNT
+  const step = Math.floor(i / ARM_COUNT)
+  const t = step / (DUST_PER_ARM - 1)
+  const radius = 10 + t * MAX_RADIUS
+  const angle = arm * ((2 * Math.PI) / ARM_COUNT) + t * SPIRAL_TURNS * 2 * Math.PI
+  const x = 50 + radius * Math.cos(angle)
+  const y = 50 + radius * Math.sin(angle)
+  const size = 46 + t * 70
+  return { x, y, size }
+})
 
 function Star({ star, keyPrefix, i }) {
   return (
@@ -72,12 +92,12 @@ function Star({ star, keyPrefix, i }) {
         height: star.size,
         background: star.isGreen ? "#8FCB9B" : "#ffffff",
         boxShadow: star.isGreen
-          ? "0 0 4px rgba(143,203,155,0.9)"
-          : "0 0 4px rgba(255,255,255,0.9)",
+          ? "0 0 6px rgba(143,203,155,0.95)"
+          : "0 0 6px rgba(255,255,255,0.95)",
       }}
-      initial={{ opacity: 0.2 }}
+      initial={{ opacity: 0.3 }}
       animate={{
-        opacity: [0.2, 1, 0.3, 0.9, 0.2],
+        opacity: [0.3, 1, 0.4, 0.9, 0.3],
         scale: [1, 1.4, 1, 1.3, 1],
       }}
       transition={{
@@ -114,31 +134,59 @@ export function FloatingGrid() {
         <Star star={star} keyPrefix="field" i={i} key={`field-${i}`} />
       ))}
 
-      {/* Tilted spiral galaxy disc */}
+      {/* Tilted spiral galaxy disc, fixed size so it always reads as one shape */}
       <div className="absolute inset-0 flex items-center justify-center" style={{ transform: "rotate(18deg)" }}>
-        <div style={{ width: "150%", height: "150%", position: "relative", transform: "scaleY(0.42)" }}>
+        <div style={{ width: DISC_SIZE, height: DISC_SIZE, position: "relative", transform: "scaleY(0.42)" }}>
           {/* Bright galactic core glow */}
           <motion.div
             className="absolute rounded-full"
             style={{
               left: "50%",
               top: "50%",
-              width: 220,
-              height: 220,
+              width: 260,
+              height: 260,
               transform: "translate(-50%, -50%)",
               background:
-                "radial-gradient(circle, rgba(225,255,230,0.55) 0%, rgba(143,203,155,0.3) 40%, transparent 72%)",
-              filter: "blur(4px)",
+                "radial-gradient(circle, rgba(235,255,240,0.75) 0%, rgba(180,230,190,0.4) 30%, rgba(143,203,155,0.18) 55%, transparent 75%)",
+              filter: "blur(3px)",
             }}
-            animate={{ opacity: [0.7, 1, 0.7], scale: [0.9, 1.05, 0.9] }}
+            animate={{ opacity: [0.75, 1, 0.75], scale: [0.9, 1.08, 0.9] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <div
+            className="absolute rounded-full"
+            style={{
+              left: "50%",
+              top: "50%",
+              width: 60,
+              height: 60,
+              transform: "translate(-50%, -50%)",
+              background: "radial-gradient(circle, rgba(255,255,255,0.95) 0%, transparent 75%)",
+              filter: "blur(1px)",
+            }}
           />
 
           <motion.div
             className="absolute inset-0"
             animate={{ rotate: 360 }}
-            transition={{ duration: 200, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 150, repeat: Infinity, ease: "linear" }}
           >
+            {/* Glowing dust lanes tracing the spiral arms */}
+            {DUST_BANDS.map((d, i) => (
+              <div
+                key={`dust-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${d.x}%`,
+                  top: `${d.y}%`,
+                  width: d.size,
+                  height: d.size,
+                  transform: "translate(-50%, -50%)",
+                  background: "radial-gradient(circle, rgba(143,203,155,0.16) 0%, transparent 70%)",
+                  filter: "blur(6px)",
+                }}
+              />
+            ))}
             {GALAXY_STARS.map((star, i) => (
               <Star star={star} keyPrefix="galaxy" i={i} key={`galaxy-${i}`} />
             ))}
