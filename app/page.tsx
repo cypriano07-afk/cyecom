@@ -31,7 +31,7 @@ export default function CyresellsPage() {
       </div>
 
       <div className="relative w-full bg-[#080807] flex flex-col items-center py-20 md:py-24 px-4 md:px-6">
-        <FloatingGrid position="left" />
+        <FloatingGrid position="left" intensity="minimal" />
         <div className="relative z-10 w-full max-w-[1220px]">
           <VslStep2 />
         </div>
