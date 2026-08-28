@@ -112,7 +112,7 @@ export function CyresellsHero() {
       </div>
 
       {/* Animated floating grid cells */}
-      <FloatingGrid />
+      <FloatingGrid position="right" />
 
       {/* Gold ambient blob — full right side */}
       <div
