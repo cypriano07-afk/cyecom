@@ -23,7 +23,7 @@ export default function CyresellsPage() {
       </div>
 
       <div className="relative w-full bg-[#10100D] flex flex-col items-center pt-8 pb-20 md:pt-10 md:pb-24 px-4 md:px-6">
-        <FloatingGrid />
+        <FloatingGrid position="bottom-left" />
         <div className="relative z-10 w-full max-w-[1220px]">
           <VslStep1 />
         </div>
@@ -31,7 +31,7 @@ export default function CyresellsPage() {
       </div>
 
       <div className="relative w-full bg-[#080807] flex flex-col items-center py-20 md:py-24 px-4 md:px-6">
-        <FloatingGrid />
+        <FloatingGrid position="left" />
         <div className="relative z-10 w-full max-w-[1220px]">
           <VslStep2 />
         </div>
@@ -39,7 +39,7 @@ export default function CyresellsPage() {
       </div>
 
       <div className="relative w-full bg-[#131210] flex flex-col items-center py-20 md:py-24 px-4 md:px-6">
-        <FloatingGrid />
+        <FloatingGrid position="bottom-right" />
         <div className="relative z-10 w-full max-w-[1220px]">
           <CyresellsTestimonials />
         </div>
@@ -47,7 +47,7 @@ export default function CyresellsPage() {
       </div>
 
       <div className="relative w-full bg-[#090908] flex flex-col items-center py-20 md:py-24 px-4 md:px-6">
-        <FloatingGrid />
+        <FloatingGrid position="top-left" />
         <div className="relative z-10 w-full max-w-[1220px]">
           <CyresellsCta />
         </div>
