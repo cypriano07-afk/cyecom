@@ -7,14 +7,14 @@ function seededRandom(seed) {
   return x - Math.floor(x)
 }
 
-const FIELD_STAR_COUNT = 35
+const FIELD_STAR_COUNT = 45
 const ARM_COUNT = 3
 const ARM_STAR_COUNT = 60
 const CORE_STAR_COUNT = 22
 const DUST_PER_ARM = 7
 const SPIRAL_TURNS = 2.2
 const MAX_RADIUS = 46
-const DISC_SIZE = 640
+const DISC_SIZE = 520
 
 const FIELD_STARS = Array.from({ length: FIELD_STAR_COUNT }, (_, i) => {
   const n = i + 1
@@ -80,14 +80,28 @@ const DUST_BANDS = Array.from({ length: ARM_COUNT * DUST_PER_ARM }, (_, i) => {
   return { x, y, size }
 })
 
+// Where the spiral galaxy sits within its section, as a percentage of the
+// container. Keeping it off-center (instead of dead-center every time) and
+// letting the section's overflow-hidden crop it reads like a faint, distant
+// galaxy glimpsed at the edge of frame rather than a repeated hero graphic.
+const GALAXY_POSITIONS = {
+  center: { x: 50, y: 50 },
+  "top-left": { x: 16, y: 20 },
+  "top-right": { x: 84, y: 20 },
+  "bottom-left": { x: 14, y: 82 },
+  "bottom-right": { x: 86, y: 80 },
+  left: { x: 10, y: 50 },
+  right: { x: 90, y: 50 },
+}
+
 function Star({ star, keyPrefix, i }) {
   return (
     <motion.div
-      key={`${keyPrefix}-${i}`}
+      key={keyPrefix + "-" + i}
       className="absolute rounded-full"
       style={{
-        left: `${star.x}%`,
-        top: `${star.y}%`,
+        left: star.x + "%",
+        top: star.y + "%",
         width: star.size,
         height: star.size,
         background: star.isGreen ? "#8FCB9B" : "#ffffff",
@@ -110,7 +124,9 @@ function Star({ star, keyPrefix, i }) {
   )
 }
 
-export function FloatingGrid() {
+export function FloatingGrid({ position = "center" }: { position?: keyof typeof GALAXY_POSITIONS } = {}) {
+  const pos = GALAXY_POSITIONS[position] || GALAXY_POSITIONS.center
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {/* Ambient nebula glows */}
@@ -129,13 +145,22 @@ export function FloatingGrid() {
         }}
       />
 
-      {/* Distant background stars */}
+      {/* Distant background stars, scattered across the whole section */}
       {FIELD_STARS.map((star, i) => (
-        <Star star={star} keyPrefix="field" i={i} key={`field-${i}`} />
+        <Star star={star} keyPrefix="field" i={i} key={"field-" + i} />
       ))}
 
-      {/* Tilted spiral galaxy disc, fixed size so it always reads as one shape */}
-      <div className="absolute inset-0 flex items-center justify-center" style={{ transform: "rotate(18deg)" }}>
+      {/* Tilted spiral galaxy, offset off-center and dimmed so it reads as a
+          faint, distant galaxy rather than a bold centered graphic */}
+      <div
+        className="absolute"
+        style={{
+          left: pos.x + "%",
+          top: pos.y + "%",
+          transform: "translate(-50%, -50%) rotate(18deg)",
+          opacity: 0.38,
+        }}
+      >
         <div style={{ width: DISC_SIZE, height: DISC_SIZE, position: "relative", transform: "scaleY(0.42)" }}>
           {/* Bright galactic core glow */}
           <motion.div
@@ -147,10 +172,10 @@ export function FloatingGrid() {
               height: 260,
               transform: "translate(-50%, -50%)",
               background:
-                "radial-gradient(circle, rgba(235,255,240,0.75) 0%, rgba(180,230,190,0.4) 30%, rgba(143,203,155,0.18) 55%, transparent 75%)",
-              filter: "blur(3px)",
+                "radial-gradient(circle, rgba(235,255,240,0.55) 0%, rgba(180,230,190,0.28) 30%, rgba(143,203,155,0.12) 55%, transparent 75%)",
+              filter: "blur(4px)",
             }}
-            animate={{ opacity: [0.75, 1, 0.75], scale: [0.9, 1.08, 0.9] }}
+            animate={{ opacity: [0.6, 0.85, 0.6], scale: [0.9, 1.08, 0.9] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           />
           <div
@@ -161,7 +186,7 @@ export function FloatingGrid() {
               width: 60,
               height: 60,
               transform: "translate(-50%, -50%)",
-              background: "radial-gradient(circle, rgba(255,255,255,0.95) 0%, transparent 75%)",
+              background: "radial-gradient(circle, rgba(255,255,255,0.7) 0%, transparent 75%)",
               filter: "blur(1px)",
             }}
           />
@@ -174,21 +199,21 @@ export function FloatingGrid() {
             {/* Glowing dust lanes tracing the spiral arms */}
             {DUST_BANDS.map((d, i) => (
               <div
-                key={`dust-${i}`}
+                key={"dust-" + i}
                 className="absolute rounded-full"
                 style={{
-                  left: `${d.x}%`,
-                  top: `${d.y}%`,
+                  left: d.x + "%",
+                  top: d.y + "%",
                   width: d.size,
                   height: d.size,
                   transform: "translate(-50%, -50%)",
-                  background: "radial-gradient(circle, rgba(143,203,155,0.16) 0%, transparent 70%)",
+                  background: "radial-gradient(circle, rgba(143,203,155,0.1) 0%, transparent 70%)",
                   filter: "blur(6px)",
                 }}
               />
             ))}
             {GALAXY_STARS.map((star, i) => (
-              <Star star={star} keyPrefix="galaxy" i={i} key={`galaxy-${i}`} />
+              <Star star={star} keyPrefix="galaxy" i={i} key={"galaxy-" + i} />
             ))}
           </motion.div>
         </div>
